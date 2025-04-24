@@ -99,6 +99,11 @@ npm start
   [![LinkedIn](https://img.shields.io/badge/LinkedIn-Harshal_Mali-blue)](https://www.linkedin.com/in/harshal-mali-b40b61244/)
 </div>
 
+## 👍 Credits
+
+To **Nitin** for designing the game theme and laying the foundation for the initial frontend work. Your expertise and efforts have been invaluable in making this project a reality! 🚀 📌 **LinkedIn**: [![LinkedIn](https://img.shields.io/badge/LinkedIn-Nitin-blue)](https://www.linkedin.com/in/nitin-jangale-7b6202235/)
+
+
 ## 📜 License & Copyright
 
 Copyright © 2024 [Harshal Mali](https://harshalmali.online). All rights reserved.

@@ -1,31 +1,66 @@
-# Multiplayer Card Game
+# 🎮 Multiplayer Card Game | Real-time Socket.IO Game
 
-A real-time multiplayer card game built with Node.js, Express, and Socket.IO where players compete to play the highest card.
+<div align="center">
+  <img src="./assets/game-banner.png" alt="Multiplayer Card Game Banner" width="800px"/>
 
-## Features
+> A lightning-fast, real-time multiplayer card game built with Node.js, Express, and Socket.IO. Challenge your friends in this exciting turn-based card battle!
 
--   Create and join game rooms with unique room codes
--   Support for 2-4 players per room
--   Real-time game state updates
--   Ready/Not Ready system
--   Turn-based gameplay
--   Score tracking
--   Responsive design
--   Visual feedback for game events
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
+[![Live Demo](https://img.shields.io/badge/demo-online-green.svg)](https://harshalmali.online)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-v4.5.4-blue.svg)](https://socket.io/)
 
-## Technology Stack
+</div>
+
+<div align="center">
+  <img src="./assets/gameplay.gif" alt="Gameplay Demo" width="600px"/>
+</div>
+
+## ✨ Features
+
+<div align="center">
+  <img src="./assets/features.png" alt="Game Features" width="400px"/>
+</div>
+
+-   🚀 Real-time multiplayer gameplay using Socket.IO
+-   🔐 Secure private game rooms with unique codes
+-   👥 Support for 2-4 players per room
+-   ⚡ Instant state updates and smooth gameplay
+-   📱 Fully responsive design
+-   🎨 Modern UI with visual feedback
+
+## 🎯 Game Preview
+
+<div align="center">
+  <table>
+    <tr>
+      <td><img src="./assets/login.png" alt="Login Screen" width="400px"/></td>
+      <td><img src="./assets/room.png" alt="Game Room" width="400px"/></td>
+    </tr>
+    <tr>
+      <td><img src="./assets/gameplay.png" alt="Gameplay" width="400px"/></td>
+      <td><img src="./assets/winner.png" alt="Winner Screen" width="400px"/></td>
+    </tr>
+  </table>
+</div>
+
+## 🛠️ Tech Stack
+
+<div align="center">
+  <img src="./assets/tech-stack.png" alt="Technology Stack" width="600px"/>
+</div>
 
 -   **Backend**: Node.js, Express
--   **Real-time Communication**: Socket.IO
--   **Frontend**: HTML, CSS, JavaScript
--   **No external database required**
+-   **WebSocket**: Socket.IO
+-   **Frontend**: HTML5, CSS3, JavaScript
+-   **Architecture**: Event-driven, Real-time
 
-## Installation
+## 🚀 Quick Start
 
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/harshal20m/multiplayer-card-game.git
+cd multiplayer-card-game
 ```
 
 2. Install dependencies:
@@ -42,50 +77,57 @@ npm start
 
 4. Open your browser and navigate to `http://localhost:3000`
 
-## How to Play
+## 🎮 How to Play
 
-1. Enter your name and either create a new room or join an existing one with a room code
+<div align="center">
+  <img src="./assets/how-to-play.png" alt="How to Play Guide" width="500px"/>
+</div>
+
+1. Enter your name and either create a new room or join an existing one
 2. Share the room code with friends to invite them to play
 3. Click "Ready" when you want to start
-4. When it's your turn, click "Play Card" to draw a random card (1-10)
-5. The player with the highest card wins the round
-6. First player to win 3 rounds wins the game!
+4. Draw cards and try to play the highest value
+5. First to win 3 rounds becomes the champion!
 
-## Game Rules
+## 👨‍💻 Developer
 
--   2-4 players per room
--   Cards range from 1 to 10
--   One card played per turn
--   Highest card wins the round
--   In case of a tie, no points are awarded
--   First to 3 points wins the game
+<div align="center">
+  <img src="./assets/profile.jpg" alt="Harshal Mali" width="200px" style="border-radius: 50%"/>
+  
+  ### Harshal Mali
+  Full Stack Developer | Socket.IO Expert
+  
+  [![Portfolio](https://img.shields.io/badge/Portfolio-harshalmali.online-blue)](https://harshalmali.online)
+  [![GitHub](https://img.shields.io/badge/GitHub-harshal20m-black)](https://github.com/harshal20m)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Harshal_Mali-blue)](https://linkedin.com/in/harshal-mali)
+</div>
 
-## Project Structure
+## 📜 License & Copyright
 
-```
-├── server.js         # Main server file
-├── public/
-│   └── index.html    # Frontend game interface
-├── package.json      # Project dependencies
-└── README.md        # Documentation
-```
+<div align="center">
+  <img src="./assets/license.png" alt="License Banner" width="400px"/>
+</div>
 
-## Development
+Copyright © 2024 [Harshal Mali](https://harshalmali.online). All rights reserved.
 
-To modify the game:
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
--   Game logic is in `server.js`
--   UI and client logic is in `public/index.html`
--   Game constants (like WIN_SCORE) can be modified in `server.js`
+### Terms of Use
 
-## License
+-   ✅ Commercial use permitted
+-   ✅ Modification allowed
+-   ✅ Distribution permitted
+-   ✅ Private use allowed
+-   ❌ No Liability
+-   ❌ No Warranty
 
-MIT
+## 🔍 SEO Keywords
 
-## Contributing
+`multiplayer-game` `socket-io` `real-time` `node-js` `express` `card-game` `websockets` `javascript` `gaming` `turn-based`
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+---
+
+<div align="center">
+  <img src="./assets/footer.png" alt="Footer Banner" width="800px"/>
+  <p>Made with ❤️ by <a href="https://harshalmali.online">Harshal Mali</a></p>
+</div>

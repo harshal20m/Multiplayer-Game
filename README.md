@@ -1,7 +1,7 @@
 # 🎮 Multiplayer Card Game | Real-time Socket.IO Game
 
 <div align="center">
-  <img src="./assets/game-banner.png" alt="Multiplayer Card Game Banner" width="800px"/>
+  
 
 > A lightning-fast, real-time multiplayer card game built with Node.js, Express, and Socket.IO. Challenge your friends in this exciting turn-based card battle!
 

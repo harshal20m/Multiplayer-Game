@@ -1,7 +1,7 @@
 # 🎮 Multiplayer Card Game | Real-time Socket.IO Game
 
 <div align="center">
-  
+
 
 > A lightning-fast, real-time multiplayer card game built with Node.js, Express, and Socket.IO. Challenge your friends in this exciting turn-based card battle!
 
@@ -103,10 +103,9 @@ npm start
 
 To **Nitin** for designing the game theme and laying the foundation for the initial frontend work. Your expertise and efforts have been invaluable in making this project a reality! 🚀 📌 **LinkedIn**: [![LinkedIn](https://img.shields.io/badge/LinkedIn-Nitin-blue)](https://www.linkedin.com/in/nitin-jangale-7b6202235/)
 
-
 ## 📜 License & Copyright
 
-Copyright © 2024 [Harshal Mali](https://harshalmali.online). All rights reserved.
+Copyright © 2025 [Harshal Mali](https://harshalmali.online). All rights reserved.
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 

@@ -47,7 +47,7 @@
 ## 🛠️ Tech Stack
 
 <div align="center">
-  <img src="./assets/tech-stack.png" alt="Technology Stack" width="600px"/>
+  <img src="https://github.com/harshal20m/Multiplayer-Game/blob/main/images/Stack.png?raw=true" alt="Technology Stack" width="600px"/>
 </div>
 
 -   **Backend**: Node.js, Express

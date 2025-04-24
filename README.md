@@ -80,10 +80,6 @@ npm start
 
 ## 🎮 How to Play
 
-<div align="center">
-  <img src="./assets/how-to-play.png" alt="How to Play Guide" width="500px"/>
-</div>
-
 1. Enter your name and either create a new room or join an existing one
 2. Share the room code with friends to invite them to play
 3. Click "Ready" when you want to start

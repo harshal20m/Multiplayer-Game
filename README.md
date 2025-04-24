@@ -33,12 +33,15 @@
 <div align="center">
   <table>
     <tr>
-      <td><img src="./assets/login.png" alt="Login Screen" width="400px"/></td>
-      <td><img src="./assets/room.png" alt="Game Room" width="400px"/></td>
+      <td><img src="https://github.com/harshal20m/Multiplayer-Game/blob/main/images/GameLobbyInitial.png?raw=true" alt="Login Screen" width="400px"/></td>
+      <td><img src="https://github.com/harshal20m/Multiplayer-Game/blob/main/images/GameLobby.png?raw=true" alt="Game Room" width="400px"/></td>
     </tr>
     <tr>
-      <td><img src="./assets/gameplay.png" alt="Gameplay" width="400px"/></td>
-      <td><img src="./assets/winner.png" alt="Winner Screen" width="400px"/></td>
+      <td><img src="https://github.com/harshal20m/Multiplayer-Game/blob/main/images/GameDeck.png?raw=true" alt="Gameplay" width="400px"/></td>
+      <td><img src="https://github.com/harshal20m/Multiplayer-Game/blob/main/images/WinRound.png?raw=true" alt="Winner Screen" width="400px"/></td>
+    </tr>
+    <tr>
+      <td><img src="https://github.com/harshal20m/Multiplayer-Game/blob/main/images/WinGame.png?raw=true" alt="Gameplay" width="400px"/></td>
     </tr>
   </table>
 </div>

@@ -95,18 +95,14 @@ npm start
   <img src="./assets/profile.jpg" alt="Harshal Mali" width="200px" style="border-radius: 50%"/>
   
   ### Harshal Mali
-  Full Stack Developer | Socket.IO Expert
+  Full Stack Developer | MERN | AWS
   
   [![Portfolio](https://img.shields.io/badge/Portfolio-harshalmali.online-blue)](https://harshalmali.online)
   [![GitHub](https://img.shields.io/badge/GitHub-harshal20m-black)](https://github.com/harshal20m)
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Harshal_Mali-blue)](https://linkedin.com/in/harshal-mali)
+  [![LinkedIn](https://img.shields.io/badge/LinkedIn-Harshal_Mali-blue)](https://www.linkedin.com/in/harshal-mali-b40b61244/)
 </div>
 
 ## 📜 License & Copyright
-
-<div align="center">
-  <img src="./assets/license.png" alt="License Banner" width="400px"/>
-</div>
 
 Copyright © 2024 [Harshal Mali](https://harshalmali.online). All rights reserved.
 
@@ -128,6 +124,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 <div align="center">
-  <img src="./assets/footer.png" alt="Footer Banner" width="800px"/>
   <p>Made with ❤️ by <a href="https://harshalmali.online">Harshal Mali</a></p>
 </div>

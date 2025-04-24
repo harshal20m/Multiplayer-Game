@@ -12,7 +12,7 @@
 </div>
 
 <div align="center">
-  <img src="./assets/gameplay.gif" alt="Gameplay Demo" width="600px"/>
+  <img src="https://github.com/harshal20m/Multiplayer-Game/blob/main/images/GameLandingPage.png?raw=true" alt="Gameplay Demo" width="600px"/>
 </div>
 
 ## ✨ Features

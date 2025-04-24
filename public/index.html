@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Multiplayer Card Game</title>
+		<style>
+			:root {
+				--bg: #f0f0f0;
+				--fg: #000;
+				--panel: #fff;
+				--accent: #3498db;
+				--table-h: #2c3e50;
+				--table-b: #34495e;
+			}
+			body.dark {
+				--bg: #1e1e1e;
+				--fg: #eee;
+				--panel: #2c2c2c;
+				--accent: #e67e22;
+				--table-h: #333;
+				--table-b: #444;
+			}
+			body {
+				font-family: "Segoe UI", sans-serif;
+				background: var(--bg);
+				color: var(--fg);
+				margin: 0;
+				padding: 2rem;
+				text-align: center;
+			}
+			h1 {
+				font-size: 2.5rem;
+				color: var(--accent);
+			}
+			.hidden {
+				display: none;
+			}
+			button {
+				padding: 0.6rem 1.2rem;
+				margin: 0.6rem;
+				font-size: 1rem;
+				cursor: pointer;
+				border: none;
+				border-radius: 6px;
+				background: var(--accent);
+				color: #fff;
+				transition: 0.2s;
+			}
+			button:hover {
+				opacity: 0.85;
+			}
+			button:disabled {
+				background: #777;
+				cursor: not-allowed;
+			}
+			#game {
+				margin-top: 1rem;
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 25px;
+			}
+			.player {
+				background: var(--panel);
+				padding: 1rem;
+				border-radius: 8px;
+				width: 200px;
+				position: relative;
+			}
+			.player.current {
+				border: 3px solid var(--accent);
+			}
+			.player.you {
+				background: rgba(52, 152, 219, 0.1);
+			}
+			#message {
+				font-size: 1.2rem;
+				margin-top: 1rem;
+				color: var(--accent);
+				min-height: 3rem;
+			}
+			select,
+			input {
+				padding: 0.5rem;
+				font-size: 1rem;
+				margin: 0.6rem;
+				border-radius: 6px;
+				width: 220px;
+			}
+			.winner-glow {
+				box-shadow: 0 0 20px 5px var(--accent);
+			}
+			.ready-badge {
+				position: absolute;
+				top: -10px;
+				right: -10px;
+				background: #2ecc71;
+				color: white;
+				border-radius: 50%;
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				font-size: 0.8rem;
+			}
+			.room-code {
+				font-size: 1.2rem;
+				margin: 1rem 0;
+				padding: 0.5rem;
+				background: var(--panel);
+				display: inline-block;
+				border-radius: 6px;
+			}
+			.waiting-text {
+				font-style: italic;
+				opacity: 0.7;
+			}
+			#lobby {
+				margin: 2rem auto;
+				max-width: 500px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Multiplayer Card Game</h1>
+
+		<!-- Initial connection screen -->
+		<div id="connect">
+			<input type="text" id="playerName" placeholder="Enter your name" maxlength="12" />
+			<div>
+				<button onclick="createRoom()">Create Room</button>
+				<div>- or -</div>
+				<input type="text" id="roomCode" placeholder="Enter room code" maxlength="6" />
+				<button onclick="joinRoom()">Join Room</button>
+			</div>
+		</div>
+
+		<!-- Lobby/waiting room -->
+		<div id="lobby" class="hidden">
+			<h2>Game Lobby</h2>
+			<div class="room-code">Room Code: <span id="roomCodeDisplay"></span></div>
+			<p class="waiting-text">Waiting for players to join and ready up...</p>
+			<div id="playersList"></div>
+			<button id="readyBtn" onclick="toggleReady()">Ready</button>
+		</div>
+
+		<!-- Dynamic game board -->
+		<div id="game" class="hidden"></div>
+
+		<div id="message"></div>
+		<button id="newGameBtn" class="hidden" onclick="backToLobby()">Back to Lobby</button>
+
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			// Connect to socket.io server
+			const socket = io();
+
+			// Global state
+			let playerId = null;
+			let roomId = null;
+			let players = [];
+			let isReady = false;
+			let gameInProgress = false;
+			let playerName = "";
+
+			// DOM elements
+			const connectDiv = document.getElementById("connect");
+			const lobbyDiv = document.getElementById("lobby");
+			const gameDiv = document.getElementById("game");
+			const messageDiv = document.getElementById("message");
+			const newGameBtn = document.getElementById("newGameBtn");
+			const readyBtn = document.getElementById("readyBtn");
+
+			// Create a new game room
+			function createRoom() {
+				playerName = document.getElementById("playerName").value.trim();
+				if (!playerName) {
+					showMsg("Please enter your name");
+					return;
+				}
+
+				socket.emit("createRoom", playerName);
+			}
+
+			// Join an existing room
+			function joinRoom() {
+				playerName = document.getElementById("playerName").value.trim();
+				const code = document.getElementById("roomCode").value.trim().toUpperCase();
+
+				if (!playerName) {
+					showMsg("Please enter your name");
+					return;
+				}
+
+				if (!code) {
+					showMsg("Please enter a room code");
+					return;
+				}
+
+				socket.emit("joinRoom", { roomId: code, playerName });
+			}
+
+			// Toggle player readiness
+			function toggleReady() {
+				socket.emit("toggleReady", roomId);
+				isReady = !isReady;
+
+				// Update UI
+				if (isReady) {
+					readyBtn.textContent = "Not Ready";
+				} else {
+					readyBtn.textContent = "Ready";
+				}
+			}
+
+			// Play a card during your turn
+			function playCard() {
+				if (!gameInProgress) return;
+				socket.emit("playCard", roomId);
+			}
+
+			// Go back to lobby after game ends
+			function backToLobby() {
+				gameDiv.classList.add("hidden");
+				newGameBtn.classList.add("hidden");
+				lobbyDiv.classList.remove("hidden");
+				gameInProgress = false;
+
+				// Reset ready status
+				isReady = false;
+				readyBtn.textContent = "Ready";
+
+				showMsg("");
+			}
+
+			// Update player list in lobby
+			function updatePlayersList() {
+				const list = document.getElementById("playersList");
+				list.innerHTML = "";
+
+				players.forEach((player) => {
+					const isYou = player.id === playerId;
+					const div = document.createElement("div");
+					div.className = "player";
+
+					if (isYou) {
+						div.classList.add("you");
+					}
+
+					div.innerHTML = `
+						<h3>${player.name} ${isYou ? "(You)" : ""}</h3>
+						${player.ready ? '<div class="ready-badge">✓</div>' : ""}
+					`;
+
+					list.appendChild(div);
+				});
+			}
+
+			// Build game UI for gameplay
+			function buildGameUI() {
+				gameDiv.innerHTML = "";
+
+				players.forEach((player) => {
+					const isYou = player.id === playerId;
+					const div = document.createElement("div");
+					div.className = "player";
+					div.id = `player-${player.id}`;
+
+					if (isYou) {
+						div.classList.add("you");
+					}
+
+					let playButton = "";
+					if (isYou) {
+						playButton = `<button id="play-btn" onclick="playCard()" disabled>Play Card</button>`;
+					}
+
+					div.innerHTML = `
+						<h3>${player.name} ${isYou ? "(You)" : ""}</h3>
+						${playButton}
+						<p>Card: <span id="card-${player.id}">-</span></p>
+						<p>Score: <span id="score-${player.id}">0</span></p>
+					`;
+
+					gameDiv.appendChild(div);
+				});
+			}
+
+			// Highlight the current player's turn
+			function highlightCurrentPlayer(currentPlayerId) {
+				// Remove highlight from all players
+				document.querySelectorAll(".player").forEach((el) => {
+					el.classList.remove("current");
+				});
+
+				// Add highlight to current player
+				const currentPlayerEl = document.getElementById(`player-${currentPlayerId}`);
+				if (currentPlayerEl) {
+					currentPlayerEl.classList.add("current");
+				}
+
+				// Enable/disable play button
+				const playBtn = document.getElementById("play-btn");
+				if (playBtn) {
+					playBtn.disabled = currentPlayerId !== playerId;
+				}
+			}
+
+			// Update the score display
+			function updateScores() {
+				players.forEach((player) => {
+					const scoreEl = document.getElementById(`score-${player.id}`);
+					if (scoreEl) {
+						scoreEl.textContent = player.score;
+					}
+				});
+			}
+
+			// Show a message to the user
+			function showMsg(text) {
+				messageDiv.textContent = text;
+			}
+
+			// Socket event handlers
+			socket.on("roomCreated", (data) => {
+				roomId = data.roomId;
+				playerId = data.playerId;
+
+				// Update UI
+				connectDiv.classList.add("hidden");
+				lobbyDiv.classList.remove("hidden");
+				document.getElementById("roomCodeDisplay").textContent = roomId;
+
+				showMsg(`Room created! Share code: ${roomId}`);
+			});
+
+			socket.on("roomJoined", (data) => {
+				roomId = data.roomId;
+				playerId = data.playerId;
+
+				// Update UI
+				connectDiv.classList.add("hidden");
+				lobbyDiv.classList.remove("hidden");
+				document.getElementById("roomCodeDisplay").textContent = roomId;
+
+				showMsg(`Joined room ${roomId}`);
+			});
+
+			socket.on("playersUpdate", (data) => {
+				players = data.players;
+
+				// Update player's own ready status
+				const player = players.find((p) => p.id === playerId);
+				if (player) {
+					isReady = player.ready;
+					readyBtn.textContent = isReady ? "Not Ready" : "Ready";
+				}
+
+				updatePlayersList();
+			});
+
+			socket.on("gameStarted", (data) => {
+				// Hide lobby, show game
+				lobbyDiv.classList.add("hidden");
+				gameDiv.classList.remove("hidden");
+				gameInProgress = true;
+
+				buildGameUI();
+				showMsg(data.message);
+
+				// Highlight first player
+				highlightCurrentPlayer(data.currentPlayer.id);
+			});
+
+			socket.on("nextTurn", (data) => {
+				highlightCurrentPlayer(data.currentPlayer.id);
+				showMsg(`${data.currentPlayer.name}'s turn`);
+			});
+
+			socket.on("cardPlayed", (data) => {
+				const cardEl = document.getElementById(`card-${data.playerId}`);
+				if (cardEl) {
+					cardEl.textContent = data.card;
+				}
+
+				// Add visual effect
+				const playerEl = document.getElementById(`player-${data.playerId}`);
+				if (playerEl) {
+					playerEl.classList.add("highlight");
+					setTimeout(() => {
+						playerEl.classList.remove("highlight");
+					}, 800);
+				}
+			});
+
+			socket.on("roundResult", (data) => {
+				players = data.players;
+				updateScores();
+
+				if (data.winners.length === 1) {
+					const winner = data.winners[0];
+					showMsg(`${winner.name} wins the round!`);
+
+					// Add visual effect
+					const winnerEl = document.getElementById(`player-${winner.id}`);
+					if (winnerEl) {
+						winnerEl.classList.add("winner-glow");
+						setTimeout(() => {
+							winnerEl.classList.remove("winner-glow");
+						}, 1500);
+					}
+				} else if (data.winners.length > 1) {
+					showMsg("Round is a draw!");
+				}
+			});
+
+			socket.on("nextRound", (data) => {
+				// Reset card displays
+				players.forEach((player) => {
+					const cardEl = document.getElementById(`card-${player.id}`);
+					if (cardEl) {
+						cardEl.textContent = "-";
+					}
+				});
+
+				highlightCurrentPlayer(data.currentPlayer.id);
+				showMsg(`New round! ${data.currentPlayer.name}'s turn`);
+			});
+
+			socket.on("gameOver", (data) => {
+				showMsg(data.message);
+				newGameBtn.classList.remove("hidden");
+
+				// Highlight the winner
+				const winnerEl = document.getElementById(`player-${data.winner.id}`);
+				if (winnerEl) {
+					winnerEl.classList.add("winner-glow");
+				}
+
+				// Disable all play buttons
+				const playBtn = document.getElementById("play-btn");
+				if (playBtn) {
+					playBtn.disabled = true;
+				}
+			});
+
+			socket.on("playerLeft", (data) => {
+				showMsg("A player has left the game");
+			});
+
+			socket.on("error", (message) => {
+				showMsg(message);
+			});
+		</script>
+	</body>
+</html>

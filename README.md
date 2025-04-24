@@ -18,7 +18,7 @@
 ## ✨ Features
 
 <div align="center">
-  <img src="./assets/GameLobby.png" alt="Game Features" width="400px"/>
+  <img src="https://github.com/harshal20m/Multiplayer-Game/blob/main/images/Feature.png?raw=true" alt="Game Features" width="400px"/>
 </div>
 
 -   🚀 Real-time multiplayer gameplay using Socket.IO
@@ -89,7 +89,7 @@ npm start
 ## 👨‍💻 Developer
 
 <div align="center">
-  <img src="https://lh3.googleusercontent.com/a/ACg8ocIjEH7Rhi2yCy1ft28tVPgNdUDWmyx_5ptrA3RXSQESufL00fCh=s288-c-no" alt="Harshal Mali" width="200px" style="border-radius: 50%"/>
+    <img src="https://github.com/harshal20m/Multiplayer-Game/blob/main/images/hm.png?raw=true" alt="Harshal Mali" width="200px" style="border-radius: 50%"/>
   
   ### Harshal Mali
   Full Stack Developer | MERN | AWS

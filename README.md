@@ -89,7 +89,7 @@ npm start
 ## 👨‍💻 Developer
 
 <div align="center">
-  <img src="./assets/profile.jpg" alt="Harshal Mali" width="200px" style="border-radius: 50%"/>
+  <img src="https://lh3.googleusercontent.com/a/ACg8ocIjEH7Rhi2yCy1ft28tVPgNdUDWmyx_5ptrA3RXSQESufL00fCh=s288-c-no" alt="Harshal Mali" width="200px" style="border-radius: 50%"/>
   
   ### Harshal Mali
   Full Stack Developer | MERN | AWS

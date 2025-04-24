@@ -18,7 +18,7 @@
 ## ✨ Features
 
 <div align="center">
-  <img src="./assets/features.png" alt="Game Features" width="400px"/>
+  <img src="./assets/GameLobby.png" alt="Game Features" width="400px"/>
 </div>
 
 -   🚀 Real-time multiplayer gameplay using Socket.IO
